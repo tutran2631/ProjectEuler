@@ -1,6 +1,6 @@
 package com.tutran.project;
 
-import com.tutran.problem.Problem8;
+import com.tutran.problem.*;
 import com.tutran.problem.handler.BaseHandler;
 
 public class Main {
@@ -26,8 +26,8 @@ public class Main {
             "05886116467109405077541002256983155200055935729725" +
             "71636269561882670428252483600823257530420752963450";
     public static void main(String[] args) {
-        BaseHandler handler = new Problem8();
-        Object result = handler.solve(input);
+        BaseHandler handler = new Problem10();
+        Object result = handler.solve(2000000);
         System.out.println(result);
     }
 }
