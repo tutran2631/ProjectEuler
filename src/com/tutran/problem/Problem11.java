@@ -1,5 +1,7 @@
 package com.tutran.problem;
 
+import com.tutran.problem.handler.BaseHandler;
+
 /**
  * In the 20×20 grid below, four numbers along a diagonal line have been marked in red.
 
@@ -28,5 +30,54 @@ package com.tutran.problem;
  What is the greatest product of four adjacent numbers in the same direction (up, down, left, right, or diagonally) in the 20×20 grid?
  * Created by tu_tran on 12/17/13.
  */
-public class Problem11 {
+public class Problem11 implements BaseHandler<int[][], Double>{
+    @Override
+    public Double solve(int[][] input) {
+        int height = input.length;
+        int width = input[0].length;
+        Double max = 1.0;
+        for (int i=0; i<height; i++) {
+            for (int j=0; j<width; j++) {
+                if (j+4 < width) max = getMax(max, calcHProduct(input, i, j));
+                if (i+4 < height) max = getMax(max, calcVProduct(input, i, j));
+                if (j+4 < width && i+4 < height) max = getMax(max, calcD1Product(input, i, j));
+                if (j-4 >=0 && i+4 < height) max = getMax(max, calcD2Product(input, i, j));
+            }
+        }
+        return max;
+    }
+    private Double calcHProduct(int[][] input, int row, int col) {
+        Double result = 1.0;
+        for (int i=col; i<col+4; i++) {
+            result *= input[row][i];
+        }
+        return result;
+    }
+    private Double calcVProduct(int[][] input, int row, int col) {
+        Double result = 1.0;
+        for (int i=row; i<row+4; i++) {
+            result *= input[i][col];
+        }
+        return result;
+    }
+    private Double calcD1Product(int[][] input, int row, int col) {
+        Double result = 1.0;
+        for (int i=col; i<col+4; i++) {
+            result *= input[row][i];
+            row++;
+        }
+        return result;
+    }
+
+    private Double calcD2Product(int[][] input, int row, int col) {
+        Double result = 1.0;
+        for (int i=row; i<row+4; i++) {
+            result *= input[i][col];
+            col--;
+        }
+        return result;
+    }
+    private Double getMax(Double a, Double b) {
+        return (a > b) ? a : b;
+    }
 }
