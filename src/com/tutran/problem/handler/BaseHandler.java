@@ -1,5 +1,5 @@
 package com.tutran.problem.handler;
 
-public interface BaseHandler<T>{
-    public Double solve(T input);
+public interface BaseHandler<T,U>{
+    public U solve(T input);
 }
