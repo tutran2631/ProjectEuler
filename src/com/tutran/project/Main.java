@@ -28,6 +28,7 @@ public class Main {
     public static void main(String[] args) {
         BaseHandler handler = new Problem8();
         Object result = handler.solve(input);
+
         System.out.println(result);
     }
 }
